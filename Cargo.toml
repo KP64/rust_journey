@@ -41,3 +41,7 @@ name = "for_vs_iter"
 [[bin]]
 path = "src/constant_fun/main.rs"
 name = "constant_fun"
+
+[[bin]]
+path = "src/closures/main.rs"
+name = "closures"
