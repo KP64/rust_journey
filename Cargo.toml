@@ -45,3 +45,7 @@ name = "constant_fun"
 [[bin]]
 path = "src/closures/main.rs"
 name = "closures"
+
+[[bin]]
+path = "src/iterators/main.rs"
+name = "iterators"

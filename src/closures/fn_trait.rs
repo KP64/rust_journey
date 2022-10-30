@@ -20,15 +20,15 @@ pub fn fn_trait() {
     calc_and_print(1, 2, Box::new(|x, y| x + y + z));
 
     // * 2. Approach needs a reference:
-    fn calc_and_print_borrowed(x: i32, y: i32, calculator: Box<&dyn Fn(i32, i32) -> i32>) {
+    fn calc_and_print_borrowed(x: i32, y: i32, calculator: &dyn Fn(i32, i32) -> i32) {
         let result = calculator(x, y);
         println!("borrowed : {}", result);
     }
-    calc_and_print_borrowed(1, 25, Box::new(&add));
-    calc_and_print_borrowed(2, 29, Box::new(&|x, y| x + y));
+    calc_and_print_borrowed(1, 25, &add);
+    calc_and_print_borrowed(2, 29, &|x, y| x + y);
 
     // * Now we can also pass a closure with
     // * capturing to calc_and_print
     let z = 3;
-    calc_and_print_borrowed(188, 27, Box::new(&|x, y| x + y + z));
+    calc_and_print_borrowed(188, 27, &|x, y| x + y + z);
 }

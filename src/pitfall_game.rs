@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::{cmp::Ordering, io, ops::Range};
+use std::{cmp::Ordering, io, ops::RangeInclusive};
 
 const OBSTACLE_DISPLAY: &str = "🔥";
 const FREE_SPACE_DISPLAY: &str = "_";
@@ -21,7 +21,7 @@ fn main() {
         // 3. move the player to the next space
         // 4. print out the board
 
-        let roll = roll_two_dice(1..7, 1..7);
+        let roll = roll_two_dice(1..=6, 1..=6);
         let roll = roll.0 + roll.1;
 
         let turn = PlayerTurn {
@@ -91,7 +91,7 @@ fn hit_obstacle_next_place(place: usize, penalty: usize) -> usize {
 ///
 /// Blocks for user input and rolls the die.
 ///
-fn roll_two_dice(dice1: Range<usize>, dice2: Range<usize>) -> (usize, usize) {
+fn roll_two_dice(dice1: RangeInclusive<usize>, dice2: RangeInclusive<usize>) -> (usize, usize) {
     println!("🎲🎲 Roll two dice…");
 
     io::stdin()

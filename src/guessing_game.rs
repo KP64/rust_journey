@@ -1,8 +1,9 @@
 use rand::Rng;
-use std::{cmp::Ordering, io};
+use std::{cmp::Ordering, io, ops::RangeInclusive};
 
+const POSSIBLE_NUMS: RangeInclusive<i32> = 0..=20;
 fn main() {
-    let secret_number = rand::thread_rng().gen_range(0..=100);
+    let secret_number = rand::thread_rng().gen_range(POSSIBLE_NUMS);
 
     let mut remaining_tries = 6;
 
@@ -14,11 +15,11 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read Line");
 
-        let guess = match guess.trim().parse::<i32>() {
+        let guess: i32 = match guess.trim().parse() {
             Ok(num) => {
-                if !(0..=100).contains(&num) {
+                if !(POSSIBLE_NUMS).contains(&num) {
                     println!("Your number is out of range.");
-                    println!("The range is from 0 to 100\n");
+                    println!("The range is from {:?}\n", POSSIBLE_NUMS);
                     continue;
                 }
                 num
