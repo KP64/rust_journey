@@ -1,0 +1,43 @@
+[package]
+name = "rust_book"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.5"
+
+
+[[bin]]
+path = "src/main.rs"
+name = "main"
+
+[[bin]]
+path = "src/guessing_game.rs"
+name = "guessing_game"
+
+[[bin]]
+path = "src/pitfall_game.rs"
+name = "pitfall_game"
+
+[[bin]]
+path = "src/binary_search.rs"
+name = "binary_search"
+
+
+[[bin]]
+path = "src/s_t_i_l/optimized.rs"
+name = "optimized_style"
+
+[[bin]]
+path = "src/s_t_i_l/unoptimized.rs"
+name = "unoptimized_style"
+
+[[bin]]
+path = "src/for_vs_iter.rs"
+name = "for_vs_iter"
+
+[[bin]]
+path = "src/constant_fun/main.rs"
+name = "constant_fun"
