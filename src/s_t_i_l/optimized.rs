@@ -8,24 +8,6 @@ struct User<'u> {
     sign_in_count: usize,
 }
 
-// ! Unintended but it looks like the
-// ! default "Beautiful" Debug implementation LMAO
-/* impl<'u> fmt::Display for User<'u> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.write_fmt(format_args!(
-            r#"User: {{
-    email: "{}",
-    username: "{}",
-    active: {},
-    sign_in_count: {}
-}}"#,
-            self.get_email(),
-            self.get_username(),
-            self.get_active(),
-            self.get_sign_in_count()
-        ))
-    }
-} */
 impl<'u> fmt::Display for User<'u> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_fmt(format_args!(
