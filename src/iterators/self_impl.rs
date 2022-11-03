@@ -5,9 +5,11 @@ struct Password {
 }
 
 impl Password {
+    #[allow(unused)]
     fn new() -> Self {
         Self::with_length(10)
     }
+
     fn with_length(length: usize) -> Self {
         Password { length }
     }
@@ -44,7 +46,9 @@ impl Iterator for PasswordIterator {
 pub fn self_impl() {
     println!("SelfImple:");
 
-    for p in Password::new().into_iter().take(3) {
+    let password_len = thread_rng().gen_range(0..=10);
+
+    for p in Password::with_length(password_len).into_iter().take(3) {
         println!("The next password is {}", p);
     }
 }

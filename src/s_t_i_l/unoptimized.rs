@@ -26,8 +26,8 @@ impl Build for User {
 
     fn empty() -> Self {
         Self {
-            email: "".to_string(),
-            username: "".to_string(),
+            email: String::from(""),
+            username: String::from(""),
             active: true,
             sign_in_count: 1,
         }
@@ -82,11 +82,11 @@ impl GetInfo for User {
 }
 
 fn main() {
-    let email1 = "karamalsadeh@hotmail.com".to_string();
-    let name1 = "Karam".to_string();
+    let email1 = String::from("karamalsadeh@hotmail.com");
+    let name1 = String::from("Karam");
 
-    let email2 = "alsadehjamal@gmail.com".to_string();
-    let name2 = "Arij".to_string();
+    let email2 = String::from("alsadehjamal@gmail.com");
+    let name2 = String::from("Arij");
 
     let us1 = User::new(email1, name1).get_name().get_email();
     println!("{:?}", us1);

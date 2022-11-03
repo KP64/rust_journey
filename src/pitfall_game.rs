@@ -5,6 +5,7 @@ const OBSTACLE_DISPLAY: &str = "🔥";
 const FREE_SPACE_DISPLAY: &str = "_";
 
 const COURSE_LEN: usize = 32;
+const DICE_RANGE: RangeInclusive<usize> = 1..=6;
 
 fn main() {
     let course = make_course(COURSE_LEN);
@@ -21,7 +22,7 @@ fn main() {
         // 3. move the player to the next space
         // 4. print out the board
 
-        let roll = roll_two_dice(1..=6, 1..=6);
+        let roll = roll_two_dice();
         let roll = roll.0 + roll.1;
 
         let turn = PlayerTurn {
@@ -52,8 +53,8 @@ fn make_board_display(place: usize, course: &[Space]) -> Vec<String> {
     let mut board = vec![];
     for (i, &spot) in course.iter().enumerate() {
         let item = match spot {
-            Space::Obstacle(_) => OBSTACLE_DISPLAY.to_string(),
-            Space::FreeSpace => FREE_SPACE_DISPLAY.to_string(),
+            Space::Obstacle(_) => String::from(OBSTACLE_DISPLAY),
+            Space::FreeSpace => String::from(FREE_SPACE_DISPLAY),
         };
         if i == place {
             board.push(format!("+{}", i));
@@ -91,7 +92,7 @@ fn hit_obstacle_next_place(place: usize, penalty: usize) -> usize {
 ///
 /// Blocks for user input and rolls the die.
 ///
-fn roll_two_dice(dice1: RangeInclusive<usize>, dice2: RangeInclusive<usize>) -> (usize, usize) {
+fn roll_two_dice() -> (usize, usize) {
     println!("🎲🎲 Roll two dice…");
 
     io::stdin()
@@ -100,7 +101,10 @@ fn roll_two_dice(dice1: RangeInclusive<usize>, dice2: RangeInclusive<usize>) -> 
 
     let mut rand_thread = rand::thread_rng();
 
-    (rand_thread.gen_range(dice1), rand_thread.gen_range(dice2))
+    (
+        rand_thread.gen_range(DICE_RANGE),
+        rand_thread.gen_range(DICE_RANGE),
+    )
 }
 
 #[derive(Debug)]

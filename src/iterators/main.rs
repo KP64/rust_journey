@@ -1,6 +1,6 @@
 mod iter_diff;
-mod self_impl;
 mod ordered_arr;
+mod self_impl;
 fn main() {
     self_impl::self_impl();
     println!();

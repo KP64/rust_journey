@@ -49,3 +49,7 @@ name = "closures"
 [[bin]]
 path = "src/iterators/main.rs"
 name = "iterators"
+
+[[bin]]
+path = "src/combinators.rs"
+name = "combinators"
