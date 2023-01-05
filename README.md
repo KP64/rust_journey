@@ -8,7 +8,7 @@ The repository contains multiple crates for each topic, while indiscernible topi
 
 ## Folder structure 📁
 
-```rs
+```txt
 .
 │       
 ├── closures/
@@ -37,9 +37,9 @@ The repository contains multiple crates for each topic, while indiscernible topi
 ├── iterators/
 │   ├── src/
 │   │   ├── mod iter_diff: pub(crate)
-│   │   ├── main
-│   │   ├── mod ordered_arr: pub(crate)
-│   │   └── mod self_impl: pub(crate)
+│   │   ├── main.rs
+│   │   ├── ordered_arr.rs
+│   │   └── self_impl.rs
 │   └── Cargo.toml
 │
 ├── s_t_i_l/
