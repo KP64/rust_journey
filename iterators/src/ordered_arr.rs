@@ -7,7 +7,7 @@ trait IsOrdered {
 // Const generics
 impl<T, const N: usize> IsOrdered for [T; N]
 where
-    T: Ord + Copy,
+    T: Ord,
 {
     fn is_ordered(&self) -> bool {
         if self.is_empty() || self.len() == 1 {
