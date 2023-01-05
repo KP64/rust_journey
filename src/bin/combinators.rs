@@ -7,7 +7,7 @@ fn main() {
         "Anatoly 4.0",
     ];
 
-    // * Declarative Way
+    // * Declarative Approach
     let good_students: Vec<Student> = students
         .iter()
         .flat_map(|s| {
@@ -21,7 +21,7 @@ fn main() {
         .collect();
     println!("{:?}", good_students);
 
-    // * Imperative Way
+    // * Imperative Approach
     let mut good_students: Vec<Student> = vec![];
     for student in students {
         let mut s = student.split(' ');
