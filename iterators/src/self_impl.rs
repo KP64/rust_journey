@@ -11,7 +11,7 @@ impl Password {
     }
 
     fn with_length(length: usize) -> Self {
-        Password { length }
+        Self { length }
     }
 }
 
