@@ -13,7 +13,7 @@ where
     items[index]
 }
 
-pub fn customers() {
+pub(crate) fn customers() {
     println!("Customers:");
 
     const CUSTOMERS: [Customer; 2] = [

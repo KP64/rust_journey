@@ -1,4 +1,4 @@
-pub fn fn_trait() {
+pub(crate) fn fn_trait() {
     println!("CalculatorV2:");
 
     fn add(x: i32, y: i32) -> i32 {

@@ -46,7 +46,7 @@ const fn concat<const N: usize>(strs: &[&str]) -> Buf<N> {
     Buf(buffer)
 }
 
-pub fn buf_concat() {
+pub(crate) fn buf_concat() {
     println!("Buf Concat:");
 
     const STRS: &[&str; 13] = &[

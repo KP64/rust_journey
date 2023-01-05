@@ -45,7 +45,7 @@ const fn can_purr<'a>(can_purr: bool) -> &'a dyn Animal {
 
 // ! Dont forget that const functions can be
 // ! used for non-const variables
-pub fn animals() {
+pub(crate) fn animals() {
     println!("Animals:");
 
     // ? Const

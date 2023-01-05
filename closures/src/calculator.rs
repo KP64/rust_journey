@@ -1,4 +1,4 @@
-pub fn calculator() {
+pub(crate) fn calculator() {
     println!("Calculator:");
     fn add(x: i32, y: i32) -> i32 {
         x + y

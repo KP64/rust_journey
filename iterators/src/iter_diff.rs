@@ -4,7 +4,7 @@ struct Point {
     y: f64,
 }
 
-pub fn iter_diff() {
+pub(crate) fn iter_diff() {
     println!("Iter Diff:");
 
     // * by value iteration

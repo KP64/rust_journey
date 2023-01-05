@@ -22,7 +22,7 @@ const _: () = {
     let _ = ImplementsMyTrait(PhantomData::<IHaveOtherNumbers>);
 };
 
-pub fn last_number() {
+pub(crate) fn last_number() {
     println!("Last Number:");
     println!("{:?}", IHaveOtherNumbers::NUMBERS);
 }

@@ -29,7 +29,7 @@ const fn get_five_numbers() -> [usize; 5] {
 
     numbers
 }
-pub fn five_numbers() {
+pub(crate) fn five_numbers() {
     println!("Five Numbers:");
 
     let numbers = get_five_numbers();
