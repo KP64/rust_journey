@@ -1,3 +1,4 @@
+#[allow(clippy::match_single_binding, clippy::toplevel_ref_arg)]
 fn main() {
     // Assign a reference of type `i32`. The `&` signifies there
     // is a reference being assigned.

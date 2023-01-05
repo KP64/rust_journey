@@ -1,13 +1,8 @@
 [package]
-name = "rust_journey"
+name = "s_t_i_l"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rand = "0.8.5"
-rayon = "1.6"
-
-[workspace]
-members = ["closures", "constant_fun", "iterators", "s_t_i_l"]

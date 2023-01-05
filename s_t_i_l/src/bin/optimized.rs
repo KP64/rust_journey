@@ -29,6 +29,7 @@ trait Build<'b> {
 
     fn empty_new() -> Self;
 }
+
 impl<'b> Build<'b> for User<'b> {
     fn new(email: &'b str, username: &'b str) -> Self {
         Self {

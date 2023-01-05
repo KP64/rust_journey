@@ -1,7 +1,8 @@
 mod calculator;
-mod fn_mut_trait;
-mod fn_once_trait;
-mod fn_trait;
+mod dyn_vs_static_dispatch;
+mod trait_types;
+
+use trait_types::{fn_mut_trait, fn_once_trait, fn_trait};
 #[allow(clippy::redundant_closure_call)]
 fn main() {
     println!("Main:");
@@ -35,5 +36,7 @@ fn main() {
     fn_mut_trait::fn_mut_trait();
     println!();
     fn_once_trait::fn_once_trait();
+    println!();
+    dyn_vs_static_dispatch::dyn_vs_static_dispatch();
     println!();
 }
