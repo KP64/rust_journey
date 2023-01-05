@@ -1,8 +1,8 @@
 # My Rusty Journey 🦀
 
-This Repository contains my experience with topics I've dug deeper into while learning Rust just because I find them interesting.
+This Repository contains my experience with topics I've dug deeper into while learning Rust, just because I find them interesting.
 
-Some of these topics would (for example) be iterators and constants.
+Some of these topics would be (for Instance) iterators and constants.
 
 The repository contains multiple crates for each topic, while indiscernible topics have been put together as binaries in the main src directory.
 
