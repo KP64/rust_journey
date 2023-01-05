@@ -5,7 +5,7 @@ fn main() {
     //let arr = [34, 45, 70, 200, 3535, 235235];
     let key = 70;
 
-    let answer = binary_search(&arr, key).unwrap();
+    let answer = binary_search(arr, key).unwrap();
     println!("The key \"{}\" is at index: {}", key, answer);
 }
 
