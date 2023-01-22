@@ -36,7 +36,7 @@ The repository contains multiple crates for each topic, while indiscernible topi
 │
 ├── iterators/
 │   ├── src/
-│   │   ├── mod iter_diff: pub(crate)
+│   │   ├── iter_diff.rs
 │   │   ├── main.rs
 │   │   ├── ordered_arr.rs
 │   │   └── self_impl.rs
