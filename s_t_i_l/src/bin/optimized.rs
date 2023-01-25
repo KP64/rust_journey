@@ -120,7 +120,14 @@ impl<'g> GetInfo<'g> for User<'g> {
     }
 }
 
+#[cfg(feature = "dhat-heap")]
+#[global_allocator]
+static ALLOC: dhat::Alloc = dhat::Alloc;
+
 fn main() {
+    #[cfg(feature = "dhat-heap")]
+    let _profiler = dhat::Profiler::new_heap();
+
     let email = "karamalsadeh@hotmail.com";
     let name = "Karam";
 
@@ -152,4 +159,12 @@ fn main() {
         user.get_username(),
         mem::size_of_val(&user)
     );
+
+    // * Strings => &str
+    // * Vecs => Referenced Arrays
+    count_negatives(vec![vec![1, 2, 3, 4]]);
+}
+
+fn count_negatives(grid: Vec<Vec<i32>>) -> i32 {
+    grid.iter().flatten().filter(|&&elem| elem < 0).count() as i32
 }
