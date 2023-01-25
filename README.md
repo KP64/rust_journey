@@ -10,7 +10,7 @@ The repository contains multiple crates for each topic, while indiscernible topi
 
 ```txt
 .
-│       
+│      
 ├── closures/
 │   ├── src/
 │   │   ├── trait_types/
@@ -31,6 +31,12 @@ The repository contains multiple crates for each topic, while indiscernible topi
 │   │   ├── five_numbers.rs
 │   │   ├── german_goodbye.rs
 │   │   ├── last_numbers.rs
+│   │   └── main.rs
+│   └── Cargo.toml
+│
+├── idiomatic_rust/
+│   ├── src/
+│   │   ├── lib.rs
 │   │   └── main.rs
 │   └── Cargo.toml
 │
