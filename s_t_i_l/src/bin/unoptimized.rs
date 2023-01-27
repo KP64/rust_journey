@@ -1,3 +1,4 @@
+#![allow(unused)]
 use std::mem;
 
 #[derive(Debug)]
@@ -8,14 +9,21 @@ struct User {
     sign_in_count: usize,
 }
 
-// * Interfaces + Implementations for User
-trait Build {
-    fn new(email: String, username: String) -> Self;
-
-    fn empty() -> Self;
+impl Default for User {
+    fn default() -> Self {
+        Self {
+            email: Default::default(),
+            username: Default::default(),
+            active: true,
+            sign_in_count: 1,
+        }
+    }
 }
-impl Build for User {
-    fn new(email: String, username: String) -> Self {
+
+// * Interfaces + Implementations for User
+
+impl User {
+    const fn new(email: String, username: String) -> Self {
         Self {
             email,
             username,
@@ -23,23 +31,9 @@ impl Build for User {
             sign_in_count: 1,
         }
     }
-
-    fn empty() -> Self {
-        Self {
-            email: String::from(""),
-            username: String::from(""),
-            active: true,
-            sign_in_count: 1,
-        }
-    }
 }
 
-trait SetInfo {
-    fn set_name(self, username: String) -> Self;
-    fn set_email(self, email: String) -> Self;
-    fn set_active(self, active: bool) -> Self;
-}
-impl SetInfo for User {
+impl User {
     fn set_name(mut self, username: String) -> Self {
         self.username = username;
         self
@@ -56,13 +50,7 @@ impl SetInfo for User {
     }
 }
 
-trait GetInfo {
-    fn get_name(self) -> Self;
-    fn get_email(self) -> Self;
-    fn get_active(self) -> Self;
-    fn get_sign_in_count(self) -> Self;
-}
-impl GetInfo for User {
+impl User {
     fn get_name(self) -> Self {
         println!("SelfUser: {}", self.username);
         self
@@ -96,13 +84,13 @@ fn main() {
     let name2 = String::from("Arij");
 
     let us1 = User::new(email1, name1).get_name().get_email();
-    println!("{:?}", us1);
-    let us2 = User::empty()
+    println!("{us1:?}");
+    let us2 = User::default()
         .set_email(email2)
         .set_name(name2)
         .get_name()
         .get_email();
-    println!("{:?}", us2);
+    println!("{us2:?}");
 
     println!("Us1Mb: {}", mem::size_of_val(&us1));
     println!("Us2Mb: {}", mem::size_of_val(&us2));

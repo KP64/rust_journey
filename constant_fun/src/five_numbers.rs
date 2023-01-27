@@ -33,13 +33,13 @@ pub(crate) fn five_numbers() {
     println!("Five Numbers:");
 
     let numbers = get_five_numbers();
-    println!("{:?}", numbers);
+    println!("{numbers:?}");
 
     // * TurboFish syntax
     let numbers = get_first_n_numbers::<11>();
-    println!("TFS: {:?}", numbers);
+    println!("TFS: {numbers:?}");
 
     // * Explicit Type Syntax
     let numbers: [usize; 9] = get_first_n_numbers();
-    println!("ETS: {:?}", numbers);
+    println!("ETS: {numbers:?}");
 }

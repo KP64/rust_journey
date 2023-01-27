@@ -1,10 +1,12 @@
+#![feature(const_trait_impl, const_cmp)]
+
 use rand::Rng;
 use std::{cmp::Ordering, io, ops::RangeInclusive};
 
 const OBSTACLE_DISPLAY: &str = "🔥";
 const FREE_SPACE_DISPLAY: &str = "_";
 
-const COURSE_LEN: usize = 32;
+const COURSE_LEN: usize = 100;
 const DICE_RANGE: RangeInclusive<usize> = 1..=6;
 
 fn main() {
@@ -25,12 +27,9 @@ fn main() {
         let roll = roll_two_dice();
         let roll = roll.0 + roll.1;
 
-        let turn = PlayerTurn {
-            roll,
-            current_place: place,
-        };
+        let turn = PlayerTurn::new(roll, place);
 
-        println!("⏭ {:?}", turn);
+        println!("⏭ {turn:?}");
 
         let next_place = match find_next_place(&turn, COURSE_LEN, first_roll) {
             NextPlace::GameWon => {
@@ -43,45 +42,43 @@ fn main() {
         place = move_player_to_next_place(&course, next_place);
 
         let snapshot = make_board_display(place, &course);
-        println!("🎯 {:?}", snapshot);
+        println!("🎯 {snapshot:?}");
         first_roll = false;
         println!("======");
     }
 }
 
 fn make_board_display(place: usize, course: &[Space]) -> Vec<String> {
-    let mut board = vec![];
-    for (i, &spot) in course.iter().enumerate() {
-        let item = match spot {
-            Space::Obstacle(_) => String::from(OBSTACLE_DISPLAY),
-            Space::FreeSpace => String::from(FREE_SPACE_DISPLAY),
-        };
-        if i == place {
-            board.push(format!("+{}", i));
-        } else {
-            board.push(item);
-        }
-    }
-    board
+    course
+        .iter()
+        .enumerate()
+        .map(|(i, spot)| {
+            if i == place {
+                format!("+{i}")
+            } else {
+                match spot {
+                    Space::Obstacle(_) => String::from(OBSTACLE_DISPLAY),
+                    Space::FreeSpace => String::from(FREE_SPACE_DISPLAY),
+                }
+            }
+        })
+        .collect()
 }
 
 fn make_course(len: usize) -> Vec<Space> {
-    let mut course = vec![];
-    let mut rand_thread = rand::thread_rng();
-    for _ in 0..len {
-        let space = rand_thread.gen_range(0..=1);
-
-        if space == 0 {
-            course.push(Space::FreeSpace);
-        } else {
-            let penalty = rand_thread.gen_range(2..=3);
-            course.push(Space::Obstacle(penalty));
-        }
-    }
-    course
+    (0..len)
+        .map(|_| {
+            if rand::thread_rng().gen_bool(0.3) {
+                Space::FreeSpace
+            } else {
+                let penalty = rand::thread_rng().gen_range(2..=3);
+                Space::Obstacle(penalty)
+            }
+        })
+        .collect()
 }
 
-fn hit_obstacle_next_place(place: usize, penalty: usize) -> usize {
+const fn hit_obstacle_next_place(place: usize, penalty: usize) -> usize {
     let tmp = place - penalty;
     match tmp.cmp(&0) {
         Ordering::Equal | Ordering::Greater => tmp,
@@ -99,11 +96,9 @@ fn roll_two_dice() -> (usize, usize) {
         .read_line(&mut String::new())
         .expect("Failed to read line");
 
-    let mut rand_thread = rand::thread_rng();
-
     (
-        rand_thread.gen_range(DICE_RANGE),
-        rand_thread.gen_range(DICE_RANGE),
+        rand::thread_rng().gen_range(DICE_RANGE),
+        rand::thread_rng().gen_range(DICE_RANGE),
     )
 }
 
@@ -111,6 +106,15 @@ fn roll_two_dice() -> (usize, usize) {
 struct PlayerTurn {
     roll: usize,
     current_place: usize,
+}
+
+impl PlayerTurn {
+    const fn new(roll: usize, current_place: usize) -> Self {
+        Self {
+            roll,
+            current_place,
+        }
+    }
 }
 
 enum NextPlace {
@@ -124,7 +128,7 @@ enum Space {
     FreeSpace,
 }
 
-fn find_next_place(turn: &PlayerTurn, course_len: usize, first_roll: bool) -> NextPlace {
+const fn find_next_place(turn: &PlayerTurn, course_len: usize, first_roll: bool) -> NextPlace {
     let next_place = turn.current_place + turn.roll;
 
     if next_place >= course_len {
@@ -137,14 +141,9 @@ fn find_next_place(turn: &PlayerTurn, course_len: usize, first_roll: bool) -> Ne
 }
 
 fn move_player_to_next_place(course: &[Space], next_place: usize) -> usize {
-    let space = course.get(next_place);
-
-    match space {
+    match course.get(next_place) {
         Some(Space::Obstacle(v)) => {
-            println!(
-                "{} space is obstacle. go back {} spaces",
-                OBSTACLE_DISPLAY, v
-            );
+            println!("{OBSTACLE_DISPLAY} space is obstacle. go back {v} spaces");
             hit_obstacle_next_place(next_place, *v)
         }
         Some(Space::FreeSpace) => {

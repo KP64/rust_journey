@@ -5,12 +5,11 @@ struct Password {
 }
 
 impl Password {
-    #[allow(unused)]
-    fn new() -> Self {
+    const fn new() -> Self {
         Self::with_length(10)
     }
 
-    fn with_length(length: usize) -> Self {
+    const fn with_length(length: usize) -> Self {
         Self { length }
     }
 }
@@ -21,34 +20,42 @@ impl IntoIterator for Password {
     type IntoIter = PasswordIterator;
 
     fn into_iter(self) -> Self::IntoIter {
-        PasswordIterator {
-            length: self.length,
-        }
+        Self::IntoIter::new(self.length)
     }
 }
 
 struct PasswordIterator {
     length: usize,
 }
+impl PasswordIterator {
+    const fn new(length: usize) -> Self {
+        Self { length }
+    }
+}
 
 impl Iterator for PasswordIterator {
     type Item = String;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let mut result = String::with_capacity(self.length);
-        for _ in 0..self.length {
-            result.push(thread_rng().gen_range('a'..='z'));
-        }
-        Some(result)
+        Some(
+            (0..self.length)
+                .map(|_| thread_rng().gen_range('a'..='z'))
+                .collect(),
+        )
     }
 }
 
 pub(crate) fn self_impl() {
     println!("SelfImple:");
 
-    let password_len = thread_rng().gen_range(0..=10);
+    let password_len = thread_rng().gen_range(1..=10);
+    Password::with_length(password_len)
+        .into_iter()
+        .take(3)
+        .for_each(|p| println!("The next password is {p}"));
 
-    for p in Password::with_length(password_len).into_iter().take(3) {
-        println!("The next password is {}", p);
-    }
+    Password::new()
+        .into_iter()
+        .take(3)
+        .for_each(|p| println!("The next password is {p}"));
 }

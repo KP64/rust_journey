@@ -1,7 +1,7 @@
 pub(crate) fn fn_trait() {
     println!("CalculatorV2:");
 
-    fn add(x: i32, y: i32) -> i32 {
+    const fn add(x: i32, y: i32) -> i32 {
         x + y
     }
     // ? Fn is a trait allowing to take ownership of
@@ -9,7 +9,7 @@ pub(crate) fn fn_trait() {
     // ! 1. lifetimed
     fn calc_and_print(x: i32, y: i32, calculator: Box<dyn Fn(i32, i32) -> i32 + '_>) {
         let result = calculator(x, y);
-        println!("lifetimed: {}", result);
+        println!("lifetimed: {result}");
     }
     calc_and_print(1, 2, Box::new(add));
     calc_and_print(4, 29, Box::new(|x, y| x + y));
@@ -22,7 +22,7 @@ pub(crate) fn fn_trait() {
     // ! 2. Referenced
     fn calc_and_print_borrowed(x: i32, y: i32, calculator: &dyn Fn(i32, i32) -> i32) {
         let result = calculator(x, y);
-        println!("borrowed : {}", result);
+        println!("borrowed : {result}");
     }
     calc_and_print_borrowed(1, 25, &add);
     calc_and_print_borrowed(2, 29, &|x, y| x + y);

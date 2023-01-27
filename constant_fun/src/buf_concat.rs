@@ -54,13 +54,13 @@ pub(crate) fn buf_concat() {
     ];
     const LEN: usize = len(STRS);
 
-    println!("Len: {:?}", LEN);
+    println!("Len: {LEN:?}");
 
     // * TurboFish Syntax
     let conc = concat::<LEN>(STRS);
-    println!("TFS: {:?}", conc);
+    println!("TFS: {conc:?}");
 
     // * Explicit Type Syntax
     let conc: Buf<LEN> = concat(STRS);
-    println!("ETS: {:?}", conc);
+    println!("ETS: {conc:?}");
 }

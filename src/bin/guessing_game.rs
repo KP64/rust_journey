@@ -19,7 +19,7 @@ fn main() {
             Ok(num) => {
                 if !(POSSIBLE_NUMS).contains(&num) {
                     println!("Your number is out of range.");
-                    println!("The range is from {:?}\n", POSSIBLE_NUMS);
+                    println!("The range is from {POSSIBLE_NUMS:?}\n");
                     continue;
                 }
                 num
@@ -35,7 +35,7 @@ fn main() {
             Ordering::Greater => println!("The answer is too high!"),
             Ordering::Equal => {
                 println!("You have found the secret number!");
-                println!("The answer is {}", secret_number);
+                println!("The answer is {secret_number}");
                 break;
             }
         };

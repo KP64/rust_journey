@@ -1,4 +1,6 @@
-use std::num::ParseFloatError;
+use std::{fmt, num::ParseFloatError, str};
+use thiserror::Error;
+
 #[allow(unused)]
 #[derive(Debug)]
 pub struct Money {
@@ -7,18 +9,18 @@ pub struct Money {
 }
 
 impl Money {
-    pub fn new(amount: f32, currency: Currency) -> Self {
+    pub const fn new(amount: f32, currency: Currency) -> Self {
         Self { amount, currency }
     }
 }
 
-impl std::fmt::Display for Money {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl fmt::Display for Money {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_fmt(format_args!("{}{}", self.amount, self.currency))
     }
 }
 
-impl std::str::FromStr for Money {
+impl str::FromStr for Money {
     type Err = MoneyError;
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
@@ -40,8 +42,8 @@ pub enum Currency {
     Gbp,
 }
 
-impl std::fmt::Display for Currency {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl fmt::Display for Currency {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Currency::Usd => write!(f, "$"),
             Currency::Eur => write!(f, "€"),
@@ -50,7 +52,7 @@ impl std::fmt::Display for Currency {
     }
 }
 
-impl std::str::FromStr for Currency {
+impl str::FromStr for Currency {
     type Err = MoneyError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
@@ -63,7 +65,7 @@ impl std::str::FromStr for Currency {
     }
 }
 
-#[derive(Debug, thiserror::Error)]
+#[derive(Debug, Error)]
 pub enum MoneyError {
     #[error("Expected amount and currency")]
     InvalidArgs,

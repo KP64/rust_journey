@@ -7,7 +7,7 @@ use trait_types::{fn_mut_trait, fn_once_trait, fn_trait};
 fn main() {
     println!("Main:");
     // regular function
-    fn add(x: i32, y: i32) -> i32 {
+    const fn add(x: i32, y: i32) -> i32 {
         x + y
     }
     let _f = add;
@@ -26,7 +26,7 @@ fn main() {
     println!("{}", (|x, y| x + y)(1, 2));
 
     let result = f(1, 2);
-    println!("{}", result);
+    println!("{result}");
 
     println!();
     calculator::calculator();

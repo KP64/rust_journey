@@ -54,5 +54,5 @@ fn main() {
 }
 
 fn print_time_taken(iter_method: &str, time_taken: u128, time_unit: &str) {
-    println!("{} Time: {} {}", iter_method, time_taken, time_unit);
+    println!("{iter_method} Time: {time_taken} {time_unit}");
 }

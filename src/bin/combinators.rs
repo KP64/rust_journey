@@ -8,36 +8,34 @@ fn main() {
     ];
 
     // * Declarative Approach
-    let good_students: Vec<Student> = students
+    let good_students = students
         .iter()
         .flat_map(|s| {
-            let mut s = s.split(' ');
-            let name = s.next()?.to_string();
-            let gpa: f32 = s.next()?.parse().ok()?;
+            let mut student = s.split_whitespace();
+            let name = student.next()?.to_string();
+            let gpa: f32 = student.next()?.parse().ok()?;
 
-            Some(Student { name, gpa })
+            Some(Student::new(name, gpa))
         })
         .filter(|p| p.gpa >= 3.5)
-        .collect();
-    println!("{:?}", good_students);
+        .collect::<Vec<_>>();
+
+    println!("{good_students:?}");
 
     // * Imperative Approach
     let mut good_students: Vec<Student> = vec![];
     for student in students {
-        let mut s = student.split(' ');
+        let mut student = student.split(' ');
 
-        if let (Some(name), Some(gpa)) = (s.next(), s.next()) {
+        if let (Some(name), Some(gpa)) = (student.next(), student.next()) {
             if let Ok(gpa) = gpa.parse::<f32>() {
                 if gpa >= 3.5 {
-                    good_students.push(Student {
-                        name: name.to_string(),
-                        gpa,
-                    });
+                    good_students.push(Student::new(name.to_string(), gpa));
                 }
             }
         }
     }
-    println!("{:?}", good_students);
+    println!("{good_students:?}");
 }
 
 #[derive(Debug)]
@@ -45,4 +43,10 @@ fn main() {
 struct Student {
     name: String,
     gpa: f32,
+}
+
+impl Student {
+    const fn new(name: String, gpa: f32) -> Self {
+        Self { name, gpa }
+    }
 }

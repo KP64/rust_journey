@@ -2,15 +2,22 @@ fn main() {
     println!("Hello, world!👋");
 
     let h = get_first_character("Hello, world!👋");
-    println!("{:?}", h);
+    println!("{h:?}");
     let h = get_first_character_trimmed("              ⭐");
-    println!("{:?}", h);
+    println!("{h:?}");
 
     // Built ins
     let h = "Hello, world!👋".chars().next();
-    println!("{:?}", h);
+    println!("{h:?}");
     let h = ("              ⭐").chars().next();
-    println!("{:?}", h);
+    println!("{h:?}");
+
+    let v = vec!["S1", "S2"];
+    print_arr_and_vec(&v);
+}
+
+fn print_arr_and_vec(arr: &[&str]) {
+    arr.iter().for_each(|ele| println!("{ele}"));
 }
 
 /// getting first character from String even if it is a whitespace character
