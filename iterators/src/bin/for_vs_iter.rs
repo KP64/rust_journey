@@ -1,5 +1,10 @@
 use rayon::prelude::{IntoParallelIterator, ParallelIterator};
-use std::{ops::Range, time::SystemTime};
+use std::{
+    fmt::Display,
+    ops::Range,
+    thread,
+    time::{Duration, Instant},
+};
 
 /*
 ! Performance:
@@ -17,47 +22,42 @@ use std::{ops::Range, time::SystemTime};
 // ? The Debug checks are disabled, why the main Benefit of ParIter is eliminated.
 // ? Note: this test is superficial since the function does not do anything IO-Bound => Real case scenario is different.
 // ? The compiler will most likely be optimize away all loops except for ParIter since it's a different Crate
-const X: u128 = 1_000_000_000;
+const X: u128 = 10;
 const ITERATION_RANGE: Range<u128> = 0..X;
-const fn some_function_to_time() {
-    let mut x = X;
-    while x > 0 {
-        x -= 1;
-    }
+fn some_function_to_time() {
+    thread::sleep(Duration::from_secs(1));
 }
 fn main() {
     // * For loop
-    let before = SystemTime::now();
+    let now = Instant::now();
     for _ in ITERATION_RANGE {
         some_function_to_time();
     }
-    let avg = before.elapsed().unwrap().as_nanos();
-    print_time_taken("For-Loop", avg, "nano-secs");
-    print_time_taken("For-Loop", avg / X, "secs");
+    let elapsed = now.elapsed();
+    print_time_taken("For-Loop", elapsed.as_nanos(), "nano-secs");
+    print_time_taken("For-Loop", elapsed.as_secs(), "secs");
     println!();
 
     // * Iterator
-    // ? Slower than For loop
-    let before = SystemTime::now();
+    let now = Instant::now();
     ITERATION_RANGE.for_each(|_| some_function_to_time());
-    let avg = before.elapsed().unwrap().as_nanos();
-    print_time_taken("Iter", avg, "nano-secs");
-    print_time_taken("Iter", avg / X, "secs");
+    let elapsed = now.elapsed();
+    print_time_taken("Iter", elapsed.as_nanos(), "nano-secs");
+    print_time_taken("Iter", elapsed.as_secs(), "secs");
     println!();
 
     // * Parallel Iterator
-    // ? Fastest
-    // ! By a WIDE MARGIN (only in Debug mode)
-    let before = SystemTime::now();
+    // ? Fastest By a WIDE MARGIN
+    let now = Instant::now();
     ITERATION_RANGE
         .into_par_iter()
         .for_each(|_| some_function_to_time());
-    let avg = before.elapsed().unwrap().as_nanos();
-    print_time_taken("ParIter", avg, "nano-secs");
-    print_time_taken("ParIter", avg / X, "secs");
+    let elapsed = now.elapsed();
+    print_time_taken("ParIter", elapsed.as_nanos(), "nano-secs");
+    print_time_taken("ParIter", elapsed.as_secs(), "secs");
     println!();
 }
 
-fn print_time_taken(iter_method: &str, time_taken: u128, time_unit: &str) {
+fn print_time_taken(iter_method: &str, time_taken: impl Display, time_unit: &str) {
     println!("{iter_method} Time: {time_taken} {time_unit}");
 }
