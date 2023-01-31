@@ -11,13 +11,6 @@ fn main() {
     println!("{h:?}");
     let h = ("              ⭐").chars().next();
     println!("{h:?}");
-
-    let v = vec!["S1", "S2"];
-    print_arr_and_vec(&v);
-}
-
-fn print_arr_and_vec(arr: &[&str]) {
-    arr.iter().for_each(|ele| println!("{ele}"));
 }
 
 /// getting first character from String even if it is a whitespace character

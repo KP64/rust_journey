@@ -1,5 +1,3 @@
-mod calculator;
-mod dyn_vs_static_dispatch;
 mod trait_types;
 
 use trait_types::{fn_mut_trait, fn_once_trait, fn_trait};
@@ -22,21 +20,16 @@ fn main() {
     let f = |x, y| x + y;
 
     // * Inline closure including closure call
-    // ! Triggers Clippy recommendation warning
     println!("{}", (|x, y| x + y)(1, 2));
 
     let result = f(1, 2);
     println!("{result}");
 
     println!();
-    calculator::calculator();
-    println!();
     fn_trait::fn_trait();
     println!();
     fn_mut_trait::fn_mut_trait();
     println!();
     fn_once_trait::fn_once_trait();
-    println!();
-    dyn_vs_static_dispatch::dyn_vs_static_dispatch();
     println!();
 }

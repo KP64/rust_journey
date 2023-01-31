@@ -1,4 +1,4 @@
-pub(crate) fn calculator() {
+fn main() {
     println!("Calculator:");
     const fn add(x: i32, y: i32) -> i32 {
         x + y

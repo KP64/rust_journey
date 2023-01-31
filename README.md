@@ -13,25 +13,26 @@ The repository contains multiple crates for each topic, while indiscernible topi
 │      
 ├── closures/
 │   ├── src/
+│   │   ├── bin/
+│   │   │   ├── calculator.rs
+│   │   │   └── dyn_vs_static_dispatch.rs
 │   │   ├── trait_types/
 │   │   │   ├── fn_mut_trait.rs
 │   │   │   ├── fn_once_trait.rs
-│   │   │   ├── fn_trait.rs
-│   │   │   └── mod.rs
-│   │   ├── calculator.rs
-│   │   ├── dyn_vs_static_dispatch.rs
-│   │   └── main.rs
+│   │   │   └── fn_trait.rs
+│   │   ├── main.rs
+│   │   └── trait_types.rs
 │   └── Cargo.toml
 │
 ├── constant_fun/
 │   ├── src/
-│   │   ├── animals.rs
-│   │   ├── buf_concat.rs
-│   │   ├── customers.rs
-│   │   ├── five_numbers.rs
-│   │   ├── german_goodbye.rs
-│   │   ├── last_numbers.rs
-│   │   └── main.rs
+│   │   └── bin/
+│   │       ├── animals.rs
+│   │       ├── buf_concat.rs
+│   │       ├── customers.rs
+│   │       ├── five_numbers.rs
+│   │       ├── german_goodbye.rs
+│   │       └── last_numbers.rs
 │   └── Cargo.toml
 │
 ├── idiomatic_rust/
@@ -42,10 +43,12 @@ The repository contains multiple crates for each topic, while indiscernible topi
 │
 ├── iterators/
 │   ├── src/
-│   │   ├── iter_diff.rs
-│   │   ├── main.rs
-│   │   ├── ordered_arr.rs
-│   │   └── self_impl.rs
+│   │   └── bin/
+│   │       ├── combinators.rs
+│   │       ├── for_vs_iter.rs
+│   │       ├── iter_diff.rs
+│   │       ├── ordered_arr.rs
+│   │       └── self_impl.rs
 │   └── Cargo.toml
 │
 ├── s_t_i_l/
@@ -56,14 +59,12 @@ The repository contains multiple crates for each topic, while indiscernible topi
 │   └── Cargo.toml
 │
 ├── src/
-│   └── bin/
-│       ├── binary_search.rs
-│       ├── combinators.rs
-│       ├── for_vs_iter.rs
-│       ├── guessing_game.rs
-│       ├── main.rs
-│       ├── pitfall_game.rs
-│       └── ref.rs
+│   ├── bin/
+│   │    ├── binary_search.rs
+│   │    ├── guessing_game.rs
+│   │    ├── pitfall_game.rs
+│   │    └── ref.rs
+│   └── main.rs
 ├── .gitignore
 ├── Cargo.lock
 ├── Cargo.toml

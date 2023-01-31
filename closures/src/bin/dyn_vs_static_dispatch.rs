@@ -29,7 +29,7 @@ fn dyn_animal_talk(a: &dyn Animal) {
     a.talk();
 }
 
-pub(crate) fn dyn_vs_static_dispatch() {
+fn main() {
     println!("Static vs Dynamic Dispatch:");
     let d = Dog;
     let c = Cat;

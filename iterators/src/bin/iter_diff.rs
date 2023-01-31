@@ -10,7 +10,7 @@ impl Point {
     }
 }
 
-pub(crate) fn iter_diff() {
+fn main() {
     println!("Iter Diff:");
     // * by reference iteration
     let mut points = vec![

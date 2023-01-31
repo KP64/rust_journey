@@ -23,7 +23,7 @@ fn main() {
     println!("{good_students:?}");
 
     // * Imperative Approach
-    let mut good_students: Vec<Student> = vec![];
+    let mut good_students = vec![];
     for student in students {
         let mut student = student.split(' ');
 

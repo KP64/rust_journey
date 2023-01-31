@@ -25,7 +25,7 @@ where
     }
 }
 
-pub(crate) fn ordered_arr() {
+fn main() {
     println!("Ordered Array:");
     let numbers = [1, 3, 2, 45];
     println!("{}", numbers.is_ordered())

@@ -45,7 +45,7 @@ impl Iterator for PasswordIterator {
     }
 }
 
-pub(crate) fn self_impl() {
+fn main() {
     println!("SelfImple:");
 
     let password_len = thread_rng().gen_range(1..=10);

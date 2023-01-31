@@ -19,7 +19,12 @@ use std::{ops::Range, time::SystemTime};
 // ? The compiler will most likely be optimize away all loops except for ParIter since it's a different Crate
 const X: u128 = 1_000_000_000;
 const ITERATION_RANGE: Range<u128> = 0..X;
-const fn some_function_to_time() {}
+const fn some_function_to_time() {
+    let mut x = X;
+    while x > 0 {
+        x -= 1;
+    }
+}
 fn main() {
     // * For loop
     let before = SystemTime::now();

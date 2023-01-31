@@ -20,7 +20,7 @@ where
     items[index]
 }
 
-pub(crate) fn customers() {
+fn main() {
     println!("Customers:");
 
     const CUSTOMERS: [Customer; 2] = [Customer::new("John", 30), Customer::new("Jane", 25)];
