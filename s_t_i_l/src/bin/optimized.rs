@@ -1,10 +1,11 @@
 use std::{fmt, mem};
 
 #[derive(Copy, Clone, Debug)]
+#[rustfmt::skip]
 struct User<'u> {
-    email: &'u str,
-    username: &'u str,
-    active: bool,
+    email        : &'u str,
+    username     : &'u str,
+    active       : bool,
     sign_in_count: usize,
 }
 

@@ -3,7 +3,8 @@
 use rand::Rng;
 use std::{cmp::Ordering, io, ops::RangeInclusive};
 
-const OBSTACLE_DISPLAY: &str = "🔥";
+#[rustfmt::skip]
+const OBSTACLE_DISPLAY  : &str = "🔥";
 const FREE_SPACE_DISPLAY: &str = "_";
 
 const COURSE_LEN: usize = 100;
@@ -81,8 +82,8 @@ fn make_course(len: usize) -> Vec<Space> {
 const fn hit_obstacle_next_place(place: usize, penalty: usize) -> usize {
     let tmp = place - penalty;
     match tmp.cmp(&0) {
-        Ordering::Equal | Ordering::Greater => tmp,
         Ordering::Less => 0,
+        _ => tmp,
     }
 }
 

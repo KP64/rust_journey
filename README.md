@@ -11,6 +11,9 @@ The repository contains multiple crates for each topic, while indiscernible topi
 ```txt
 .
 │      
+├── benches/
+│   └── soritng_benchmark.rs
+│
 ├── closures/
 │   ├── src/
 │   │   ├── bin/
@@ -60,10 +63,11 @@ The repository contains multiple crates for each topic, while indiscernible topi
 │
 ├── src/
 │   ├── bin/
-│   │    ├── binary_search.rs
 │   │    ├── guessing_game.rs
+│   │    ├── my_atoi.rs
 │   │    ├── pitfall_game.rs
 │   │    └── ref.rs
+│   ├── lib.rs
 │   └── main.rs
 ├── .gitignore
 ├── Cargo.lock

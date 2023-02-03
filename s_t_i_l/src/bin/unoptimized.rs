@@ -2,10 +2,11 @@
 use std::mem;
 
 #[derive(Debug)]
+#[rustfmt::skip]
 struct User {
-    email: String,
-    username: String,
-    active: bool,
+    email        : String,
+    username     : String,
+    active       : bool,
     sign_in_count: usize,
 }
 

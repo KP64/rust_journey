@@ -6,7 +6,14 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rand = "0.8.5"
+rand = "*"
+
+[dev-dependencies]
+criterion = "*"
 
 [workspace]
 members = ["closures", "constant_fun", "iterators", "s_t_i_l", "idiomatic_rust"]
+
+[[bench]]
+name = "sorting_benchmark"
+harness = false
