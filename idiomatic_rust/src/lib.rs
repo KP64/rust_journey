@@ -9,6 +9,7 @@ pub struct Money {
 }
 
 impl Money {
+    #[must_use]
     pub const fn new(amount: f32, currency: Currency) -> Self {
         Self { amount, currency }
     }
@@ -26,7 +27,7 @@ impl str::FromStr for Money {
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         let input = input.split_whitespace().collect::<Vec<_>>();
         match input[..] {
-            [amount, currency] => Ok(Money::new(
+            [amount, currency] => Ok(Self::new(
                 amount.parse().map_err(MoneyError::InvalidAmount)?,
                 Currency::from_str(currency)?,
             )),
@@ -45,9 +46,9 @@ pub enum Currency {
 impl fmt::Display for Currency {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Currency::Usd => write!(f, "$"),
-            Currency::Eur => write!(f, "€"),
-            Currency::Gbp => write!(f, "£"),
+            Self::Usd => write!(f, "$"),
+            Self::Eur => write!(f, "€"),
+            Self::Gbp => write!(f, "£"),
         }
     }
 }

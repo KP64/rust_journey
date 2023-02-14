@@ -46,13 +46,13 @@ const fn concat<const N: usize>(strs: &[&str]) -> Buf<N> {
     Buf(buffer)
 }
 
+const STRS: &[&str; 13] = &[
+    "hi", " ", "there", " ", "my", " ", "name", " ", "is", " ", "KG", " ", "64",
+];
+const LEN: usize = len(STRS);
+
 fn main() {
     println!("Buf Concat:");
-
-    const STRS: &[&str; 13] = &[
-        "hi", " ", "there", " ", "my", " ", "name", " ", "is", " ", "KG", " ", "64",
-    ];
-    const LEN: usize = len(STRS);
 
     println!("Len: {LEN:?}");
 

@@ -37,19 +37,20 @@ impl Animal for Dog {
 
 #[allow(unused)]
 const fn can_purr<'a>(can_purr: bool) -> &'a dyn Animal {
-    match can_purr {
-        true => &Cat,
-        false => &Dog,
+    if can_purr {
+        &Cat
+    } else {
+        &Dog
     }
 }
 
 // ! Dont forget that const functions can be
 // ! used for non-const variables
+const JOHNNY: Human = Human::new("John", 36, &Dog);
 fn main() {
     println!("Animals:");
 
     // ? Const
-    const JOHNNY: Human = Human::new("John", 36, &Dog);
     println!(
         "{}s favorite_animal makes {}",
         JOHNNY.name,

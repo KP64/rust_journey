@@ -1,4 +1,4 @@
-pub(crate) fn fn_mut_trait() {
+pub fn fn_mut_trait() {
     println!("FnMut Trait:");
     let mut result = 0;
 

@@ -20,11 +20,11 @@ where
     items[index]
 }
 
+const CUSTOMERS: [Customer; 2] = [Customer::new("John", 30), Customer::new("Jane", 25)];
+
+const NTH_CUSTOMER: Customer = nth(CUSTOMERS, 1);
 fn main() {
     println!("Customers:");
 
-    const CUSTOMERS: [Customer; 2] = [Customer::new("John", 30), Customer::new("Jane", 25)];
-
-    const NTH_CUSTOMER: Customer = nth(CUSTOMERS, 1);
     println!("{NTH_CUSTOMER:?}");
 }

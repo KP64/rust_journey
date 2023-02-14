@@ -1,4 +1,4 @@
-pub(crate) fn fn_once_trait() {
+pub fn fn_once_trait() {
     println!("FnOnce Trait:");
 
     // * Closure consuming Iterator

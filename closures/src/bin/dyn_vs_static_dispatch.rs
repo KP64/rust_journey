@@ -18,7 +18,7 @@ impl Animal for Dog {
 /// ? Will generate 2 Functions for each Animal.
 /// ? Achieves this with function name dangling (for each type).
 /// ! It Allows the impl Animal to be a reference (&impl Animal).
-fn static_animal_talk(a: impl Animal) {
+fn static_animal_talk(a: &impl Animal) {
     a.talk();
 }
 
@@ -36,6 +36,6 @@ fn main() {
     dyn_animal_talk(&d);
     dyn_animal_talk(&c);
 
-    static_animal_talk(d);
-    static_animal_talk(c);
+    static_animal_talk(&d);
+    static_animal_talk(&c);
 }

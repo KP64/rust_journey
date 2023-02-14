@@ -1,20 +1,20 @@
 mod trait_types;
-
 use trait_types::{fn_mut_trait, fn_once_trait, fn_trait};
+
+// regular function
+#[allow(unused)]
+const fn add(x: i32, y: i32) -> i32 {
+    x + y
+}
 #[allow(clippy::redundant_closure_call)]
 fn main() {
     println!("Main:");
-    // regular function
-    const fn add(x: i32, y: i32) -> i32 {
-        x + y
-    }
-    let _f = add;
 
     // function as closure
-    let _f = |x: i32, y: i32| -> i32 { x + y };
+    let _ = |x: i32, y: i32| -> i32 { x + y };
 
     // simplified closure because of singel expression
-    let _f = |x: i32, y: i32| x + y;
+    let _ = |x: i32, y: i32| x + y;
 
     // Closure with inferred parameter types
     let f = |x, y| x + y;

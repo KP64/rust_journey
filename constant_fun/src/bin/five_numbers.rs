@@ -1,4 +1,3 @@
-// ! Evaluated at Compile time !!!
 const fn get_first_n_numbers<const N: usize>() -> [usize; N] {
     let mut numbers = [0_usize; N];
 
