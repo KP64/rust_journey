@@ -14,6 +14,12 @@ The repository contains multiple crates for each topic, while indiscernible topi
 ├── benches/
 │   └── soritng_benchmark.rs
 │
+├── builder_pattern/
+│   ├── src/
+│   │   ├── lib.rs
+│   │   └── main.rs
+│   └── Cargo.toml
+│
 ├── closures/
 │   ├── src/
 │   │   ├── bin/
@@ -72,5 +78,6 @@ The repository contains multiple crates for each topic, while indiscernible topi
 ├── .gitignore
 ├── Cargo.lock
 ├── Cargo.toml
-└── README.md
+├── README.md
+└── rust-toolchain.toml
 ```
