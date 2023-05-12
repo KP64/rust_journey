@@ -4,7 +4,7 @@ This Repository contains my experience with topics I've dug deeper into while le
 
 Some of these topics would be (for Instance) iterators and constants.
 
-The repository contains multiple crates for each topic, while indiscernible topics have been put together as binaries in the main src directory.
+The repository contains a package for each topic, while indiscernible topics have been put together as binaries in the main src directory.
 
 ## Folder structure 📁
 
